@@ -1,0 +1,82 @@
+INSTALL VIRTUAL ENVIRONMENT
+---------------------------
+create any folder
+Enter with commadline -(double click on the top path and type 'cmd')
+pip install virtualenv
+virtualenv venv
+call venv/Scripts/activate
+
+CHECK VERSIONS
+--------------
+django-admin --version
+python --version
+pip --version
+
+INSTALL DEPENDENCIES
+--------------------
+
+pip install django
+
+CREATE PROJECT AND RUNSERVER
+-------------
+django-admin startproject crud_project
+cd crud_project
+python manage.py runserver
+http://127.0.0.1:8000/
+
+
+
+CREATE SUPER ADMIN
+------
+python manage.py createsuperuser
+Robinson
+Robert@123
+
+
+CREATE APP
+---------
+python manage.py startapp crud_app
+
+
+GIT
+----
+Enter with git  commadline (right click on folder then select gitbash here option)
+pip install virtualenv
+virtualenv venv
+
+source venv/Scripts/activate
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/Robinsonkr/crud_classbased.git
+git push -u origin master
+git status
+git pull origin master
+
+solve n+1 query problem
+-----
+select * from "appname_modelname1";
+
+selct * from "appname_modelname2" WHERE "appname_modelname2"."id" = 1;
+selct * from "appname_modelname2" WHERE "appname_modelname2"."id" = 2;
+
+
+use select_related()
+
+
+select * from "employee"
+
+INNER JOIN "department" 
+ON
+
+employee.department_id = department.id
+
+
+
+
+
+
+
+
+
+

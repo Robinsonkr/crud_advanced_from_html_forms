@@ -1,0 +1,99 @@
+
+{% extends 'crud_app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+ 
+<div class="container">
+    {% if employee %}
+    {% if searched %}
+    <div class="row justify-content-center align-items-center">
+    <h3>EMPLOYEES</h3>    
+  </div> 
+<br>
+ <div class="row">
+
+<!-- LIST -->
+<div class=col-md-12>
+     
+    <form id="form-list-employee">
+            
+       
+<div class="table-responsive">
+    <table class="table table-bordered table-hover ">
+        <thead>
+            <tr>
+                 <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Mode</th>
+                <th>Description</th>
+                <th>Department</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+                 
+        </thead>
+ 
+        <tbody id="form-list-employee-body">
+        <h3>Results for "{{ searched }}" </h3> <br>
+        {% for emp in employee  %}
+         
+         
+             <tr>
+                <td>{{emp.name}}</td>
+                <td>{{emp.email}}</td>
+                <td>{{emp.phone}}</td>
+                <td>{{emp.website}}</td>
+                 <td>{{emp.mode}}</td>
+                <td>{{emp.description}}</td>
+                <td>{{emp.department.name}}</td>
+                <td>
+                 <img class="img" width="50px" height="50px" src="{{emp.image.url}}" alt="Image"></td>
+            
+
+                {% if emp.status %}
+                <td>Active</td>
+                 
+                {% else %}
+                <td>Inactive</td>
+                {% endif %}
+                 
+                <td>
+                     
+                    <a href='/edit/{{emp.id}}/' title="edit this user" class="btn btn-default btn-sm "> <i class="fas fa-edit text-edit text-primary"></i></a>
+                    <a href='/delete/{{emp.id}}/' title="delete this user" class="btn btn-default btn-sm "> <i class="fas fa-trash text-danger text-danger"></i></a>  
+                </td>
+            </tr>
+ 
+            {% endfor %}
+        
+             
+        </tbody>
+ 
+ 
+    </table>
+</div>
+    </form>    
+</div>
+ </div>
+
+ {% else %}
+<div class="row justify-content-center align-items-center">
+    <h3>You Forgot To Search For A Employee</h3>    
+  </div> 
+        
+
+        {% endif %}
+
+    {% else %}
+    <div class="row justify-content-center align-items-center">
+    <h3>No Matching Records found</h3>    
+  </div>
+{% endif %}
+</div>
+{% endblock %}

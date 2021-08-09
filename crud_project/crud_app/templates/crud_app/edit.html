@@ -1,0 +1,107 @@
+{% extends 'crud_app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+    <h3>EMPLOYEE UPDATE HTML FORMS</h3>    
+  </div> 
+    <form method='POST' action='' enctype="multipart/form-data">
+      {% csrf_token %}
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" class="form-control" id="name" placeholder="Name" value="{{employee.name}}">
+    
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{employee.email}}">
+  </div>
+   <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" value="{{employee.phone}}">
+  </div>
+    <div class="form-group">
+    <label for="website">Web adddress</label>
+    <input type="url" class="form-control" id="web" name="website" placeholder="Website" value="{{employee.website}}">
+  </div>
+  <div class="form-group">
+    <label for="desc">Description</label>
+    <textarea class="form-control" id="desc" name="description" rows="3">{{employee.description}}</textarea>
+  </div>
+       <div class="form-group">
+    <label for="phone">EMPLOYEE MODE</label>
+  <select required="" class="form-control" name="mode">
+    <option value="">SELECT THE EMPLOYEE MODE</option>
+      {% for id,emp in employee.EMPLOYEE_MODE %}     
+          <option value="{{ id }}"{% if employee.mode == id %} selected="selected"{% endif %}>{{ emp }}</option>
+          {% endfor %}
+</select>
+</div>
+ 
+
+
+  
+
+ <div class="form-group">
+    <label for="phone">Department</label>
+  
+  <select required="" class="form-control" name="department">
+          <option value="{{employee.department.id}}">{{employee.department.name}}</option>
+       
+</select>
+
+</div>
+<div class="form-group">
+    <label for="image">Photo</label>
+    <input type="file" class="form-control" id="imagee" name="image" placeholder="Photo">
+  </div>
+
+<div class="form-group">
+  <label>Status</label>
+  <div class="col-md-4">
+  {% if employee.status %}
+  <div class="radio">
+    <label for="employee-status-0">
+      <input type="radio" name="status"  id="employee-status-0" value="True" checked="checked">
+      Active
+    </label>
+    </div>
+ 
+    <div class="radio">
+    <label for="employee-status-1">
+      <input type="radio" name="status" id="employee-status-1" value="False">
+      Inactive
+    </label>
+    </div>
+   
+  {% else %}
+  <div class="radio">
+    <label for="employee-status-0">
+      <input type="radio" name="status"  id="client-status-0" value="True">
+      Active
+    </label>
+    </div>
+  <div class="radio">
+    <label for="employee-status-1">
+      <input type="radio" name="status" id="employee-status-1" value="False" checked="checked">
+      Inactive
+    </label>
+    </div>
+  {% endif %}
+   
+   
+  </div>
+
+
+
+  <button id="btn-save" class="btn btn-info" type="submit">Submit</button>
+</form>
+
+
+</div>
+<br>
+<br>
+
+{% endblock %}
